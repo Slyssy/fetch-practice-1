@@ -67,6 +67,7 @@ const displayComments = () => {
   });
 };
 
+// * Fetch User IDs
 const getUsersIds = () => {
   fetch('http://jsonplaceholder.typicode.com/posts')
     .then((res) => res.json())
@@ -79,6 +80,60 @@ const displayUserIds = () => {
     const li = `<li>#${index + 1}, User ID: ${userId}</li>`;
     showUserIds.insertAdjacentHTML('beforeend', li);
   });
+};
+
+// * Post New Data
+const data = {
+  userId: 1,
+  id: 1,
+  title: 'Bad Mammy Jammy',
+  complete: true,
+};
+
+const postOptions = {
+  method: 'Post',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+};
+
+const postNewData = () => {
+  fetch('https://jsonplaceholder.typicode.com/posts', postOptions)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log('Success', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+};
+
+// * Update a post
+const updateData = {
+  userId: 1,
+  id: 1,
+  title: 'Mediocre Mammy Jammy',
+  complete: true,
+};
+
+const updateOptions = {
+  method: 'Post',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(updateData),
+};
+
+const putData = () => {
+  fetch('https://jsonplaceholder.typicode.com/posts', updateOptions)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log('Success', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 };
 /* 
 Your job now is to follow the functions above and use them as templates 
